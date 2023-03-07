@@ -2,6 +2,8 @@
 
 <div class="container mt-4 mb-4 p-5">
 
+<h1 class="titulo">Operaciones</h1>
+
     <div class="row">
 
         <div class="col-xl-4 col-md-6 mb-4 mt-5">
