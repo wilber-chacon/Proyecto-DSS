@@ -1,17 +1,8 @@
 <?php
+$username = "root";
+$password = "";
+$database = "banco_agricultura";
 
-class conexion{
-    private $user = "root";
-    private $pass = "";
-
-    function conectar(){
-        try{
-            $pdo = new PDO('mysql:host=localhost;dbname=banco_agricultura', $this->user, $this->pass);
-        }catch(PDOException $e){
-            echo "Error " . $e->getMessage();
-        }
-        
-    }
-}
+$conexion = new mysqli("localhost", $username, $password, $database);
 
 ?>

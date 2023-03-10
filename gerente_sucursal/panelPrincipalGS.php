@@ -12,7 +12,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">
-                                <a href="#" class="text-info" style="display: block; margin: 25px 10px">Administrar
+                                <a href="administrar_empleados.php" class="text-info" style="display: block; margin: 25px 10px">Administrar
                                     empleados</a>
                             </div>
                         </div>
