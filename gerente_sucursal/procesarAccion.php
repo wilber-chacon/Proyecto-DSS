@@ -138,7 +138,7 @@ function insert()
         $conexion->set_charset("utf8");
 
         //Query utilizada para generar la insercion del registro en la base de datos
-        $queryS = "INSERT INTO sesiones (usuario, pass) VALUES ('" . $correo . "', '" . $pass . "')";
+        $queryS = "INSERT INTO sesiones (usuario, pass) VALUES ('" . $correo . "', aes_encrypt('".$pass."', 'hunter2'))";
 
         //validando la exitencia
         if ($conexion->query($queryS)) {
@@ -194,7 +194,7 @@ function obtenerR($codigo_)
 
     $empleado = new Empleado();
 
-    $query = "SELECT e.codigo_empleado, e.nombre_empleado, e.DUI_empleado, e.telefono_empleado, e.Estado_empleado, e.domicilio_empleado, e.acciones, e.fechaNacimiento_empleado, r.codigo_rol, r.nombre_rol, s.codigo_sesion, s.usuario, s.pass, su.codigo_sucursal, su.nombre_sucursal 
+    $query = "SELECT e.codigo_empleado, e.nombre_empleado, e.DUI_empleado, e.telefono_empleado, e.Estado_empleado, e.domicilio_empleado, e.acciones, e.fechaNacimiento_empleado, r.codigo_rol, r.nombre_rol, s.codigo_sesion, s.usuario, aes_decrypt(s.pass, 'hunter2') AS pass, su.codigo_sucursal, su.nombre_sucursal 
         FROM empleados as e
         INNER JOIN sesiones as s
         ON e.codigo_sesion = s.codigo_sesion
@@ -247,7 +247,7 @@ function consultar($codigo_)
 
     $empleado = new Empleado();
 
-    $query = "SELECT e.codigo_empleado, e.nombre_empleado, e.DUI_empleado, e.telefono_empleado, e.Estado_empleado, e.domicilio_empleado, e.acciones, e.fechaNacimiento_empleado, r.codigo_rol, r.nombre_rol, s.codigo_sesion, s.usuario, s.pass, su.codigo_sucursal, su.nombre_sucursal 
+    $query = "SELECT e.codigo_empleado, e.nombre_empleado, e.DUI_empleado, e.telefono_empleado, e.Estado_empleado, e.domicilio_empleado, e.acciones, e.fechaNacimiento_empleado, r.codigo_rol, r.nombre_rol, s.codigo_sesion, s.usuario, aes_decrypt(s.pass, 'hunter2') AS pass, su.codigo_sucursal, su.nombre_sucursal 
         FROM empleados as e
         INNER JOIN sesiones as s
         ON e.codigo_sesion = s.codigo_sesion
@@ -435,7 +435,7 @@ function actualizar()
         $conexion->set_charset("utf8");
 
         //Query utilizada para generar la insercion del registro en la base de datos
-        $queryS = "UPDATE sesiones set usuario = '" . $correo . "', pass='" . $pass . "' WHERE codigo_sesion = " . $codigosesion;
+        $queryS = "UPDATE sesiones set usuario = '" . $correo . "', pass = aes_encrypt('".$pass."', 'hunter2') WHERE codigo_sesion = " . $codigosesion;
 
         //validando la exitencia
         if ($conexion->query($queryS)) {
