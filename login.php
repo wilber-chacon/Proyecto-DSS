@@ -24,8 +24,30 @@
     <div class="card shadow-5-strong pb-4 login-content">
 
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-        <form action="#" method="post" class="formlogin">
+        <form action="controller/procesarLogin.php" method="post" class="formlogin">
           <div class="logouser"><i class="far fa-user-circle"></i></div>
+
+          <?php
+
+          if ($_GET) {
+            /* Comprobamos que ha llegado correctamente el campo 'lstError' */
+            if (isset($_GET['lstError'])) { ?>
+
+              <div class="alert alert-danger">
+                <ul style="list-style: none; padding: 0; text-align: center;">
+                  <?php
+                  /* Deshacemos el trabajo hecho por 'serialize' */
+                  $lista = unserialize($_GET['lstError']);
+                  foreach ($lista as $er) {
+                    echo ("<li>{$er}</li>");
+                  }
+                  ?>
+                </ul>
+              </div>
+              <?php
+            }
+          } ?>
+
           <div class="input-group mb-5 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
@@ -40,6 +62,7 @@
             <input type="password" class="form-control" name="pass" id="pass" placeholder="Contraseña"
               aria-label="Contraseña" aria-describedby="basic-addon1" required />
           </div>
+          <input type="hidden" name="operacion" id="operacion" value="ingresar">
           <button type="submit" class="btn btn-primary btn-block mb-4">
             Ingresar
           </button>
