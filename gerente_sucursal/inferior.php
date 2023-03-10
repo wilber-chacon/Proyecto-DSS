@@ -14,6 +14,28 @@
     <script src="../js/bootstrap.bundle.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/alertify.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap4.min.js"></script>
+    <script src="../js/datatables-demo.js"></script>
+
+    <script type="text/javascript">
+        var mensaje="";
+        var title="";
+        //Creamos la instancia
+        let params = new URLSearchParams(document.location.search);
+        //Accedemos a los valores
+        let mensaj = params.get("msj");
+        let titulo = params.get("titulo");
+        
+        mensaje = mensaj;
+        title = titulo;
+        if(mensaje == "si"){
+            alertify.success(title);
+
+        }else if(mensaje == "no"){
+            alertify.error(title);
+        }
+    </script>
 </body>
 
 </html>
