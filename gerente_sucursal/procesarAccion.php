@@ -26,6 +26,22 @@ switch ($op) {
     case 'modificar':
         actualizar();
         break;
+    case 'consultarPrestamo':
+        $id = $_GET['id'];
+        consultarPrestmo($id);
+        break;
+    case 'consultarPrestamo2':
+        $id = $_GET['id'];
+        consultarPrestmo2($id);
+        break;
+    case 'aprobarPrestamo':
+        $id = $_GET['id'];
+        aprobarPrestamo($id);
+        break;
+    case 'rechazarPrestamo':
+        $id = $_GET['id'];
+        rechazarPrestamo($id);
+        break;
 }
 
 
@@ -138,7 +154,7 @@ function insert()
         $conexion->set_charset("utf8");
 
         //Query utilizada para generar la insercion del registro en la base de datos
-        $queryS = "INSERT INTO sesiones (usuario, pass) VALUES ('" . $correo . "', aes_encrypt('".$pass."', 'hunter2'))";
+        $queryS = "INSERT INTO sesiones (usuario, pass) VALUES ('" . $correo . "', aes_encrypt('" . $pass . "', 'hunter2'))";
 
         //validando la exitencia
         if ($conexion->query($queryS)) {
@@ -435,7 +451,7 @@ function actualizar()
         $conexion->set_charset("utf8");
 
         //Query utilizada para generar la insercion del registro en la base de datos
-        $queryS = "UPDATE sesiones set usuario = '" . $correo . "', pass = aes_encrypt('".$pass."', 'hunter2') WHERE codigo_sesion = " . $codigosesion;
+        $queryS = "UPDATE sesiones set usuario = '" . $correo . "', pass = aes_encrypt('" . $pass . "', 'hunter2') WHERE codigo_sesion = " . $codigosesion;
 
         //validando la exitencia
         if ($conexion->query($queryS)) {
@@ -470,5 +486,150 @@ function actualizar()
     }
 }
 
+
+
+function consultarPrestmo($codigo_)
+{
+    require("../conexion/conexiondb.php");
+    //aplicando la interpretacion del español a la conexion de la base de datos
+    $conexion->set_charset("utf8");
+    include 'prestamo.php';
+    $codigo = $codigo_;
+
+    $prestamo = new Prestamo();
+
+    $query = "SELECT p.numPrestamo, p.estado_prestamo, p.fechaApertura, p.monto_prestamo, p.porcentajeInteres, p.cuotaMensual, p.cantYearAPagar, p.codigo_cliente, c.nombre_cliente
+    FROM prestamos as p
+    INNER JOIN cliente as c
+    ON p.codigo_cliente = c.codigo_cliente WHERE p.numPrestamo = " . $codigo;
+
+    if ($result = $conexion->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $prestamo->setnumPrestamo($row["numPrestamo"]);
+            $prestamo->setestadoprestamo($row["estado_prestamo"]);
+            $prestamo->setfechaApertura($row["fechaApertura"]);
+            $prestamo->setmontoprestamo($row["monto_prestamo"]);
+            $prestamo->setporcentajeInteres($row["porcentajeInteres"]);
+            $prestamo->setcuotaMensual($row["cuotaMensual"]);
+            $prestamo->setcantYearAPagar($row["cantYearAPagar"]);
+            $prestamo->setcodigocliente($row["codigo_cliente"]);
+            $prestamo->setnombreCliente($row["nombre_cliente"]);
+
+        }
+    }
+
+
+    //convertiendo el objeto $empleado en una cadena
+    $prestamo = serialize($prestamo);
+    //codificando en URL el objeto con urlencode() para poder agregarlo a la URL
+    $prestamo = urlencode($prestamo);
+    //redireccionando
+    header('Location:verPrestamo.php?prestamo=' . $prestamo);
+    //finalizando el script actual
+    exit();
+
+}
+
+
+function consultarPrestmo2($codigo_)
+{
+    require("../conexion/conexiondb.php");
+    //aplicando la interpretacion del español a la conexion de la base de datos
+    $conexion->set_charset("utf8");
+    include 'prestamo.php';
+    $codigo = $codigo_;
+
+    $prestamo = new Prestamo();
+
+    $query = "SELECT p.numPrestamo, p.estado_prestamo, p.fechaApertura, p.monto_prestamo, p.porcentajeInteres, p.cuotaMensual, p.cantYearAPagar, p.codigo_cliente, c.nombre_cliente
+    FROM prestamos as p
+    INNER JOIN cliente as c
+    ON p.codigo_cliente = c.codigo_cliente WHERE p.numPrestamo = " . $codigo;
+
+    if ($result = $conexion->query($query)) {
+        while ($row = $result->fetch_assoc()) {
+            $prestamo->setnumPrestamo($row["numPrestamo"]);
+            $prestamo->setestadoprestamo($row["estado_prestamo"]);
+            $prestamo->setfechaApertura($row["fechaApertura"]);
+            $prestamo->setmontoprestamo($row["monto_prestamo"]);
+            $prestamo->setporcentajeInteres($row["porcentajeInteres"]);
+            $prestamo->setcuotaMensual($row["cuotaMensual"]);
+            $prestamo->setcantYearAPagar($row["cantYearAPagar"]);
+            $prestamo->setcodigocliente($row["codigo_cliente"]);
+            $prestamo->setnombreCliente($row["nombre_cliente"]);
+
+        }
+    }
+
+
+    //convertiendo el objeto $empleado en una cadena
+    $prestamo = serialize($prestamo);
+    //codificando en URL el objeto con urlencode() para poder agregarlo a la URL
+    $prestamo = urlencode($prestamo);
+    //redireccionando
+    header('Location:verPrestamo2.php?prestamo=' . $prestamo);
+    //finalizando el script actual
+    exit();
+
+}
+
+
+function aprobarPrestamo($codigo_)
+{
+    require("../conexion/conexiondb.php");
+    //aplicando la interpretacion del español a la conexion de la base de datos
+    $conexion->set_charset("utf8");
+    $codigo = $codigo_;
+
+    $queryS = "UPDATE prestamos set estado_prestamo = 'Aprobado' WHERE numPrestamo = " . $codigo;
+
+    if ($conexion->query($queryS)) {
+
+        $mensaje = 'si';
+        $titulo = 'El prestamo se aprobó exitosamente.';
+
+    } else {
+
+        $mensaje = 'no';
+        $titulo = 'Error no se logró aprobar el prestamo, por favor intente nuevamente.';
+
+    }
+
+    //redireccion a la pagina donde se muestran los registros
+    header('location:administrar_prestamos.php?msj=' . $mensaje . '&titulo=' . $titulo);
+
+    //finalizacion del proceso
+    exit();
+}
+
+
+
+function rechazarPrestamo($codigo_)
+{
+    require("../conexion/conexiondb.php");
+    //aplicando la interpretacion del español a la conexion de la base de datos
+    $conexion->set_charset("utf8");
+    $codigo = $codigo_;
+
+    $queryS = "UPDATE prestamos set estado_prestamo = 'Rechazado' WHERE numPrestamo = " . $codigo;
+
+    if ($conexion->query($queryS)) {
+
+        $mensaje = 'si';
+        $titulo = 'El prestamo se rechazó exitosamente.';
+
+    } else {
+
+        $mensaje = 'no';
+        $titulo = 'Error no se logró rechazar el prestamo, por favor intente nuevamente.';
+
+    }
+
+    //redireccion a la pagina donde se muestran los registros
+    header('location:administrar_prestamos.php?msj=' . $mensaje . '&titulo=' . $titulo);
+
+    //finalizacion del proceso
+    exit();
+}
 
 ?>
