@@ -1,4 +1,4 @@
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="Salir"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+
 
 <footer class="sticky-footer bg-dark">
     <div class="my-auto">

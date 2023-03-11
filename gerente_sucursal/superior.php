@@ -43,18 +43,17 @@ if (!isset($_SESSION['usuario'])) {
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="panelPrincipalGS.php">Inicio</a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="administrar_empleados.php">Administrar empleados</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="administrar_prestamos.php">Administrar prestamos</a>
+                </li>
             </ul>
-            
-            <!-- <span class="navbar-text">
-                <?php if (isset($_SESSION['usuario'])) { echo $_SESSION['usuario']; } ?>  <i class="fas fa-user-circle" style="font-size: 2rem;"></i>
-            </span> -->
-
+       
 
             <ul class="navbar-nav ml-auto">
 
