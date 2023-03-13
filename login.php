@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/alertify.core.css" />
   <link rel="stylesheet" href="css/alertify.default.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/validarLogin.js"></script>
 </head>
 
 <body style="background-color: #21304e">
@@ -24,7 +25,7 @@
     <div class="card shadow-5-strong pb-4 login-content">
 
       <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="pills-login-tab">
-        <form action="controller/procesarLogin.php" method="post" class="formlogin">
+        <form action="controller/procesarLogin.php" method="post" class="formlogin" id="formlogin">
           <div class="logouser"><i class="far fa-user-circle"></i></div>
 
           <?php
@@ -63,7 +64,7 @@
               aria-label="Contraseña" aria-describedby="basic-addon1" required />
           </div>
           <input type="hidden" name="operacion" id="operacion" value="ingresar">
-          <button type="submit" class="btn btn-primary btn-block mb-4">
+          <button type="submit" id="enviar" class="btn btn-primary btn-block mb-4">
             Ingresar
           </button>
         </form>
