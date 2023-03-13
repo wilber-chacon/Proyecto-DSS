@@ -53,27 +53,29 @@
 
                                     <tr>
                                         <td>
-                                            <?php echo $fila[0] ?>
-                                        </td>
-                                        <td>
                                             <?php echo $fila[1] ?>
                                         </td>
                                         <td>
                                             <?php echo $fila[2] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[3] ?>
+                                            <?php echo $fila[3] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[4] ?>
+                                            $
+                                            <?php echo $fila[4] ?>
                                         </td>
                                         <td>
-                                            <?php echo $fila[5] ?> %
+                                            $
+                                            <?php echo $fila[5] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila[6] ?> %
                                         </td>
                                         <td style=" display: flex; align-items: center;">
 
                                             <a onclick="consultar('<?php echo $fila[0]; ?>')" class="btn btn-info m-3"
-                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>                                            
+                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -84,7 +86,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <div class="card shadow mb-4">
+            <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
@@ -117,27 +119,29 @@
 
                                     <tr>
                                         <td>
-                                            <?php echo $fila[0] ?>
-                                        </td>
-                                        <td>
                                             <?php echo $fila[1] ?>
                                         </td>
                                         <td>
                                             <?php echo $fila[2] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[3] ?>
+                                            <?php echo $fila[3] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[4] ?>
+                                            $
+                                            <?php echo $fila[4] ?>
                                         </td>
                                         <td>
-                                            <?php echo $fila[5] ?> %
+                                            $
+                                            <?php echo $fila[5] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila[6] ?> %
                                         </td>
                                         <td style=" display: flex; align-items: center;">
 
                                             <a onclick="ver('<?php echo $fila[0]; ?>')" class="btn btn-info m-3"
-                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>                                            
+                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -148,7 +152,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-        <div class="card shadow mb-4">
+            <div class="card shadow mb-4">
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable3" width="100%" cellspacing="0">
@@ -181,27 +185,29 @@
 
                                     <tr>
                                         <td>
-                                            <?php echo $fila[0] ?>
-                                        </td>
-                                        <td>
                                             <?php echo $fila[1] ?>
                                         </td>
                                         <td>
                                             <?php echo $fila[2] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[3] ?>
+                                            <?php echo $fila[3] ?>
                                         </td>
                                         <td>
-                                            $ <?php echo $fila[4] ?>
+                                            $
+                                            <?php echo $fila[4] ?>
                                         </td>
                                         <td>
-                                            <?php echo $fila[5] ?> %
+                                            $
+                                            <?php echo $fila[5] ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila[6] ?> %
                                         </td>
                                         <td style=" display: flex; align-items: center;">
 
                                             <a onclick="ver('<?php echo $fila[0]; ?>')" class="btn btn-info m-3"
-                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>                                            
+                                                title="Ver"><i class="fas fa-fw fa-eye"></i></a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -222,9 +228,9 @@
     }
     function ver(id) {
 
-location.href = "procesarAccion.php?operacion=consultarPrestamo2&id=" + id;
+        location.href = "procesarAccion.php?operacion=consultarPrestamo2&id=" + id;
 
-}
+    }
 </script>
 
 <?php require_once("inferior.php") ?>
