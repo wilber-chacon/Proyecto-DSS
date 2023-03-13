@@ -29,7 +29,7 @@
 
                         require("../conexion/conexiondb.php");
                         $conexion->set_charset("utf8");
-                        $sql = "SELECT e.codigo_empleado, e.nombre_empleado, r.nombre_rol, s.nombre_sucursal, e.DUI_empleado, e.Estado_empleado, e.telefono_empleado FROM empleados as e INNER JOIN roles as r ON e.codigo_rol = r.codigo_rol INNER JOIN sucursal as s ON e.codigo_sucursal = s.codigo_sucursal";
+                        $sql = "SELECT e.codigo_empleado, e.nombre_empleado, r.nombre_rol, s.nombre_sucursal, e.DUI_empleado, e.Estado_empleado, e.telefono_empleado FROM empleados as e INNER JOIN roles as r ON e.codigo_rol = r.codigo_rol INNER JOIN sucursal as s ON e.codigo_sucursal = s.codigo_sucursal WHERE e.codigo_rol != 5;";
                         $ejecutar = mysqli_query($conexion, $sql);
                         while ($fila = mysqli_fetch_array($ejecutar)) {
 

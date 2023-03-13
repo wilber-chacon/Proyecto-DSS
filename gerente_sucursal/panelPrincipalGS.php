@@ -46,7 +46,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">
-                                <a href="#" class="text-danger" style="display: block; margin: 25px 10px">Salir</a>
+                                <a href="#" class="text-danger" data-toggle="modal" data-target="#logoutModal" style="display: block; margin: 25px 10px">Salir</a>
                             </div>
                         </div>
                         <div class="col-auto">
